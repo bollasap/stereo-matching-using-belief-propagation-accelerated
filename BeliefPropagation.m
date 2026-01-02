@@ -41,28 +41,28 @@ energy = zeros(iterations,1);
 % Start iterations
 for i = 1:iterations
     
-    % Horizontal forward pass - Send message right
+    % Horizontal forward pass - Send messages right
     for x = 1:cols-1
         msg = dataCost(:,x,:)+msgUp(:,x,:)+msgDown(:,x,:)+msgLeft(:,x,:);
         msg = min(msg+smoothnessCost3d_1,[],3);
         msgLeft(:,x+1,:) = msg-min(msg,[],2); %normalize message
     end
     
-    % Horizontal backward pass - Send message left
+    % Horizontal backward pass - Send messages left
     for x = cols:-1:2
         msg = dataCost(:,x,:)+msgUp(:,x,:)+msgDown(:,x,:)+msgRight(:,x,:);
         msg = min(msg+smoothnessCost3d_1,[],3);
         msgRight(:,x-1,:) = msg-min(msg,[],2); %normalize message
     end
     
-    % Vertical forward pass - Send message down
+    % Vertical forward pass - Send messages down
     for y = 1:rows-1
         msg = dataCost(y,:,:)+msgUp(y,:,:)+msgRight(y,:,:)+msgLeft(y,:,:);
         msg = min(msg+smoothnessCost3d_2,[],3)';
         msgUp(y+1,:,:) = msg-min(msg,[],2); %normalize message
     end
     
-    % Vertical backward pass - Send message up
+    % Vertical backward pass - Send messages up
     for y = rows:-1:2
         msg = dataCost(y,:,:)+msgDown(y,:,:)+msgRight(y,:,:)+msgLeft(y,:,:);
         msg = min(msg+smoothnessCost3d_2,[],3)';
@@ -104,4 +104,5 @@ xlabel('Iterations')
 ylabel('Energy')
 
 % Save disparity image
+
 imwrite(disparityImg,'disparity.png')
