@@ -104,5 +104,4 @@ xlabel('Iterations')
 ylabel('Energy')
 
 % Save disparity image
-
 imwrite(disparityImg,'disparity.png')
