@@ -1,4 +1,4 @@
-# Stereo Matching using Belief Propagation
+# Stereo Matching using Belief Propagation (Accelerated)
 A Matlab implementation of Loopy Belief Propagation for stereo matching. It uses the "Min-Sum" version of the algorithm and the "Accelerated" (Right-Left-Down-Up pass) message update schedule.
 
 ## Input Image
